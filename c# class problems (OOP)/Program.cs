@@ -5213,8 +5213,9 @@ public class Program
 
                     foreach (Department dept in departments)
                     {
-                        if (dept.DepartmentName.Equals(deptName, StringComparison.InvariantCultureIgnoreCase) && dept.Location.Equals(deptLoc, StringComparison.InvariantCultureIgnoreCase))
-                            deptId = dept.DepartmentID;
+                        if (dept.DepartmentName==deptName && dept.Location==deptLoc)
+ -                           deptId = dept.DepartmentID;
+                             break;
                     }
 
                     if (deptId == 0)
@@ -5265,7 +5266,7 @@ class Student
 
 
 
-
+/*
 //OPA 5 june(java)
 using System;
 using System.Collections.Generic;
@@ -5368,6 +5369,7 @@ public class Solution
 }
 
 
+*/
 
 
 
@@ -5375,7 +5377,580 @@ public class Solution
 
 
 
+/*
+//c# opa 12 june ss availabel 130 & 131
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Solution
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<User> userlist = new List<User>();
+
+            User user1 = new User("Aragorn", 34, "Rivendell");
+            User user2 = new User("Legolas", 29, "Mirkwood");
+            User user3 = new User("Gimli", 31, "Helms Deep");
+            User user4 = new User("Boromir", 33, "Gondor");
+            User user5 = new User("Gandalf", 69, "Lonely Mountain");
+
+            userlist.Add(user1);
+            userlist.Add(user2);
+            userlist.Add(user3);
+            userlist.Add(user4);
+            userlist.Add(user5);
+
+            List<Order> orderlist = new List<Order>();
+
+            for (int i = 0; i < 13; i++)
+            {
+                string name = Console.ReadLine();
+                DateTime orderdate = Convert.ToDateTime(Console.ReadLine());
+                int quantity = Convert.ToInt32(Console.ReadLine());
+                int price = Convert.ToInt32(Console.ReadLine());
+                string address = Console.ReadLine();
+                Order order = new Order(name, orderdate, quantity, price, address);
+                orderlist.Add(order);
+            }
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            // Click the "..." next to "using System" statement to view the code            
+            // Write your code below to performing the 3 operations
+            // 1. Take in new Orders
+            // 2. Display the 5 most expensive
+            // 3. Display all orders made by users to a different address
+            switch (choice)
+            {
+                case 1:
+                    {
+                        string name = Console.ReadLine();
+                        DateTime date = DateTime.Parse(Console.ReadLine());
+                        DateTime today = DateTime.Now;
+                        if (date > today)
+                        {
+                            Console.WriteLine("Order date should not be a future date");
+                            break;
+                        }
+                        int quantity = Convert.ToInt32(Console.ReadLine());
+                        if (quantity < 1)
+                        {
+                            Console.WriteLine("There should be atleast 1 item");
+                            break;
+                        }
+                        int price = Convert.ToInt32(Console.ReadLine());
+                        if (price <= 0)
+                        {
+                            Console.WriteLine("Price is invalid");
+                            break;
+                        }
+                        string address = Console.ReadLine();
+                        Order newOrder = new Order(name, date, quantity, price, address);
+                        orderlist.Add(newOrder);
+                        Console.WriteLine("New order has been placed successfully");
+                        break;
+                    }
+                case 2:
+                    {
+                        orderlist.Sort();
+                        print(orderlist);
+                        break;
+                    }
+
+                case 3:
+                    {
+                        orderlist.Sort((a, b) => a.orderdate.CompareTo(b.orderdate));
+                        for (int i = 0; i < orderlist.Count; i++)
+                        {
+                            Order o = orderlist[i];
+                            for (int j = 0; j < userlist.Count; j++)
+                            {
+                                if (o.name.Equals(userlist[j].name))
+                                {
+                                    if (!o.address.Equals(userlist[j].address))
+                                    {
+                                        Console.WriteLine(o.name + " ordered " + o.quantity + " item(s) on " + o.orderdate + " to " + o.address + " instead of " + userlist[j].address);
+                                    }
+                                }
+                            }
+                        }
+                        break;
+
+                    }
+
+
+
+            }
+
+
+
+        }
+
+        public static void print(List<Order> orderlist)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine(orderlist[i].Name + " - On " + orderlist[i].OrderDate + ", " + orderlist[i].Quantity + " item(s) worth " + orderlist[i].Price + " to " + orderlist[i].Address);
+            }
+        }
+    }
+
+    // Create class User as specified. Create constructor and use public properties.
+
+    class User
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public string Address { get; set; }
+
+        public User(string name, int age, string address)
+        {
+            Name = name;
+            Age = age;
+            Address = address;
+        }
+    }
+
+    // Create class Order as specified. Create constructor and use public properties.
+
+    class Order 
+    {
+        public string Name { get; set; }
+        public DateTime OrderDate { get; set; }
+        public int Quantity { get; set; }
+        public int Price { get; set; }
+        public string Address { get; set; }
+
+        public Order(string name, DateTime date, int quantity, int price, string address)
+        {
+            Name = name;
+            OrderDate = date.Date;
+            Quantity = quantity;
+            Price = price;
+            Address = address;
+        }
+
+      
+    }
+
+}
+*/
 
 
 
 
+/*
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Solution
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<User> userlist = new List<User>();
+
+            User user1 = new User("Aragorn", 34, "Rivendell");
+            User user2 = new User("Legolas", 29, "Mirkwood");
+            User user3 = new User("Gimli", 31, "Helms Deep");
+            User user4 = new User("Boromir", 33, "Gondor");
+            User user5 = new User("Gandalf", 69, "Lonely Mountain");
+
+            userlist.Add(user1);
+            userlist.Add(user2);
+            userlist.Add(user3);
+            userlist.Add(user4);
+            userlist.Add(user5);
+
+            List<Order> orderlist = new List<Order>();
+
+            for (int i = 0; i < 13; i++)
+            {
+                string name = Console.ReadLine();
+                DateTime orderdate = Convert.ToDateTime(Console.ReadLine());
+                int quantity = Convert.ToInt32(Console.ReadLine());
+                int price = Convert.ToInt32(Console.ReadLine());
+                string address = Console.ReadLine();
+                Order order = new Order(name, orderdate, quantity, price, address);
+                orderlist.Add(order);
+            }
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            // Click the "..." next to "using System" statement to view the code            
+            // Write your code below to performing the 3 operations
+            // 1. Take in new Orders
+            // 2. Display the 5 most expensive
+            // 3. Display all orders made by users to a different address
+            
+            switch(choice)
+            {
+                case 1:
+                    string name = Console.ReadLine();
+                    DateTime orderdate = Convert.ToDateTime(Console.ReadLine());
+                    DateTime today = DateTime.Now;
+                    if(orderdate>today)
+                    {
+                        Console.WriteLine("Order date should not be a future date");
+                        break;
+                    }
+                    int quantity = Convert.ToInt32(Console.ReadLine());
+                    if(quantity<1)
+                    {
+                        Console.WriteLine("There should be atleast 1 item");
+                        break;
+
+                    }
+                    int price = Convert.ToInt32(Console.ReadLine());
+                    if(price<=0)
+                    {
+                        Console.WriteLine("price is invalid");
+                        break;
+
+                    }
+                    string address = Console.ReadLine();
+                    Order myorder = new Order(name, orderdate, quantity, price, address);
+                    orderlist.Add(myorder);
+                    Console.WriteLine("New oeder has been placed successfully");
+
+
+                    break;
+                case 2:
+                    List<Order> Sortedorder = orderlist.OrderByDescending(n => n.Price).ToList();
+                    foreach (Order item in Sortedorder.Take(5))
+                    {
+                        Console.WriteLine(item.Name + " - On " + item.OrderDate + ", " + item.Quantity + " item(s) worth " + item.Price + " to " + item.Address);
+                    }
+                    break;
+                case 3:
+            
+                    List<Order> so2 = orderlist.OrderBy(m => m.OrderDate).ToList();
+                    foreach (Order o in so2 )
+                    {
+                        User user = userlist.Find(x => x.Name.Contains(o.Name));
+                        if(o.Address!=user.Address)
+                        {
+                              Console.WriteLine(o.Name + " ordered " + o.Quantity + " item(s) on " + o.OrderDate + " to " + o.Address + " instead of " + user.Address);
+                        }
+                    }
+                    //forech(order o in orderlist)
+                    //{
+                    //    forech(user u in userlist)
+                    //{
+                    //    if(o.name==u.name)
+                    //{
+                    //    if(u.address!=u.address)
+                    //{
+                    //    Console.WriteLine(o.Name + " ordered " + o.Quantity + " item(s) on " + o.OrderDate + " to " + o.Address + " instead of " + u.Address);
+                    //}
+                    //}
+                    //}
+
+                    //}
+                    break;
+            }
+
+
+        }
+
+       
+    }
+
+    // Create class User as specified. Create constructor and use public properties.
+
+   public class User
+   {
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public string Address { get; set; }
+
+        public User(string name, int age, string address)
+        {
+            Name = name;
+            Age = age;
+            Address = address;
+        }
+    }
+
+    // Create class Order as specified. Create constructor and use public properties.
+
+   public class Order
+   {
+        public string Name { get; set; }
+        public DateTime OrderDate { get; set; }
+        public int Quantity { get; set; }
+        public int Price { get; set; }
+        public string Address { get; set; }
+
+        public Order(string name, DateTime date, int quantity, int price, string address)
+        {
+            Name = name;
+            OrderDate = date.Date;
+            Quantity = quantity;
+            Price = price;
+            Address = address;
+        }
+
+
+    }
+
+}
+
+
+
+
+
+*/
+
+
+/*
+using System;
+class sol
+{
+    static void Main()
+    {
+        string add = Console.ReadLine();
+        DateTime orderdate = Convert.ToDateTime(Console.ReadLine());
+        int check = DateTime.Compare(orderdate, DateTime.Today);
+        Console.WriteLine(check);
+    }
+}
+*/
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Linq;
+
+namespace Test
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            ProductManager manager = new ProductManager();
+
+            int n = Convert.ToInt32(Console.ReadLine());
+            for (int i = 0; i < n; i++)
+            {
+                string productName = Console.ReadLine();
+                string category = Console.ReadLine();
+                if (category == "Goods")
+                {
+                    int quantity = Convert.ToInt32(Console.ReadLine());
+                    float unitPrice = Convert.ToInt32(Console.ReadLine());
+                    int id = manager.AddProduct(productName, category, unitPrice, quantity);
+                }
+                else
+                {
+                    float unitPrice = Convert.ToInt32(Console.ReadLine());
+                    int id = manager.AddProduct(productName, category, unitPrice);
+                }
+            }
+
+            int choice = Convert.ToInt32(Console.ReadLine());
+            // Enter code for handling 4 operations
+            switch (choice)
+            {
+                case 1:
+                    string ProductName = Console.ReadLine();
+                    string category = Console.ReadLine();
+                    if (category == "Goods")
+                    {
+                        int quantity1 = Convert.ToInt32(Console.ReadLine());
+                        float unitPrice1 = Convert.ToInt32(Console.ReadLine());
+                        int id = manager.AddProduct(ProductName, category, unitPrice1, quantity1);
+
+                        if(id==0)
+                        {
+                            Console.WriteLine("Product already exists can not add again");
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("The product " + ProductName + " has been added with product id " + id);
+                            break;
+                        }
+                    }
+                    else if(category=="Services")
+                    {
+                        float unitPrice1 = Convert.ToInt32(Console.ReadLine());
+                        int id = manager.AddProduct(ProductName, category, unitPrice1);
+                        if (id == 0)
+                        {
+                            Console.WriteLine("Product already exists can not add again");
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("The product " + ProductName + " has been added with product id " + id);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Wrong category!");
+                        break;
+
+                    }
+                    break;
+                case 2:
+                    int productid = int.Parse(Console.ReadLine());
+                    int quantity = int.Parse(Console.ReadLine());
+                    float unitPrice = Convert.ToInt32(Console.ReadLine());
+                    Product pp = manager.UpdateProduct(productid, quantity, unitPrice);
+                    Console.WriteLine(pp == null ? "Product does not exist, cannot modify" : "The product " + pp.productName + " has been updated with quantity " + pp.quantity + " and unit price" + pp.unitPrice);
+                    break;
+
+                case 3:
+                    string category2 = Console.ReadLine();
+                    if(category2!="Goods" && category2!="Services" )
+                    {
+                        Console.WriteLine("Wrong category!");
+                        break;
+
+                    }
+                    else
+                    {
+                        List<Product> prods = manager.ViewProducts(category2);
+                        if(category2=="Goods")
+                        {
+                            Console.WriteLine("Category: Goods,Tax:12%");
+                            foreach (Product prod in prods)
+                                Console.WriteLine($"{prod.productid}, {prod.productName}: {prod.quantity} left, unit price: {prod.unitPrice}, total price: {prod.totalPrice}");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Category: Services, Tax = 10%");
+                            foreach (Product prod in prods)
+                                Console.WriteLine($"{prod.productid}, {prod.productName}: {prod.quantity} left, unit price: {prod.unitPrice}, total price: {prod.totalPrice}");
+
+                        }
+
+
+
+                    }
+                    break;
+                case 4:
+                    int goods, services;
+                    manager.Statistics(out goods, out services);
+                    if (goods != 0 && services != 0)
+                    {
+                        Console.WriteLine($"Category: Goods, Products: {goods}");
+                        Console.WriteLine($"Category: Services, Products: {services}");
+                    }
+                    else Console.WriteLine("No products found");
+                    break;
+
+
+                    //break;
+            }
+
+
+
+        }
+    }
+
+    // Create class Product as per given specification
+    public class Product
+    {
+        public int productid { get; set; }
+        public string productName { get; set; }
+        public string category { get; set; }
+        public int quantity { get; set; }
+        public float unitPrice { get; set; }
+        public float tax { get; set; }
+        public float totalPrice { get; set; }
+
+        public Product(int productid, string productName, string category, int quantity, float unitPrice,float tax,float TotalPrice)
+        {
+            this.productid = productid;
+            this.productName = productName;
+            this.category = category;
+            this.quantity = quantity;
+            this.unitPrice = unitPrice;
+            this.tax =category=="Goods" ? 0.12f * unitPrice : 0.10f * unitPrice;
+            this.totalPrice = unitPrice + tax;
+
+        }
+
+        public Product(int productid, string productName, string category, float unitPrice, int quantity)
+        {
+            this.productid = productid;
+            this.productName = productName;
+            this.category = category;
+            this.unitPrice = unitPrice;
+            this.quantity = quantity;
+
+
+
+        }
+
+
+    }
+
+
+
+    // Create class ProductManager as per given specification.
+    // Write methods that will perform operations handled in solution1.
+
+    public class ProductManager
+    {
+        List<Product> products { get; set; }
+        public int Productid = 100;
+
+        public int AddProduct(string productName,string category,float unitPrice,int quantity=0)
+        {
+            if (products.Exists(x => x.productName == productName))
+            {
+                return 0;
+            }
+            else
+                products.Add(new Product(++Productid, productName, category, unitPrice, quantity));
+            return Productid;
+            
+        }
+
+      public Product UpdateProduct(int Pid,int qnt,float uPrice)
+      {
+            Product p = products.Find(c => c.productid == Pid);
+            if(p!=null)
+            {
+                qnt = p.quantity;
+                uPrice = p.unitPrice;
+            }
+            return p;
+      }
+        
+        public List<Product> ViewProducts(string category)
+        {
+            List<Product> pp = null;
+            pp = products.FindAll(x => x.category == category);
+            return pp;
+
+        }
+
+        public void Statistics(out int goods, out int services)
+        {
+            goods = products.FindAll(x => x.category == "Goods").Count;
+            services = products.FindAll(x => x.category == "Services").Count;
+        }
+
+    }
+
+
+
+}
